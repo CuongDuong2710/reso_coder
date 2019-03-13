@@ -8,14 +8,24 @@ part of built_vehicle;
 
 class _$BuiltVehicle extends BuiltVehicle {
   @override
+  final String type;
+  @override
   final String brand;
+  @override
+  final double price;
 
   factory _$BuiltVehicle([void updates(BuiltVehicleBuilder b)]) =>
       (new BuiltVehicleBuilder()..update(updates)).build();
 
-  _$BuiltVehicle._({this.brand}) : super._() {
+  _$BuiltVehicle._({this.type, this.brand, this.price}) : super._() {
+    if (type == null) {
+      throw new BuiltValueNullFieldError('BuiltVehicle', 'type');
+    }
     if (brand == null) {
       throw new BuiltValueNullFieldError('BuiltVehicle', 'brand');
+    }
+    if (price == null) {
+      throw new BuiltValueNullFieldError('BuiltVehicle', 'price');
     }
   }
 
@@ -29,17 +39,23 @@ class _$BuiltVehicle extends BuiltVehicle {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is BuiltVehicle && brand == other.brand;
+    return other is BuiltVehicle &&
+        type == other.type &&
+        brand == other.brand &&
+        price == other.price;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, brand.hashCode));
+    return $jf($jc($jc($jc(0, type.hashCode), brand.hashCode), price.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('BuiltVehicle')..add('brand', brand))
+    return (newBuiltValueToStringHelper('BuiltVehicle')
+          ..add('type', type)
+          ..add('brand', brand)
+          ..add('price', price))
         .toString();
   }
 }
@@ -48,15 +64,25 @@ class BuiltVehicleBuilder
     implements Builder<BuiltVehicle, BuiltVehicleBuilder> {
   _$BuiltVehicle _$v;
 
+  String _type;
+  String get type => _$this._type;
+  set type(String type) => _$this._type = type;
+
   String _brand;
   String get brand => _$this._brand;
   set brand(String brand) => _$this._brand = brand;
+
+  double _price;
+  double get price => _$this._price;
+  set price(double price) => _$this._price = price;
 
   BuiltVehicleBuilder();
 
   BuiltVehicleBuilder get _$this {
     if (_$v != null) {
+      _type = _$v.type;
       _brand = _$v.brand;
+      _price = _$v.price;
       _$v = null;
     }
     return this;
@@ -77,7 +103,8 @@ class BuiltVehicleBuilder
 
   @override
   _$BuiltVehicle build() {
-    final _$result = _$v ?? new _$BuiltVehicle._(brand: brand);
+    final _$result =
+        _$v ?? new _$BuiltVehicle._(type: type, brand: brand, price: price);
     replace(_$result);
     return _$result;
   }
