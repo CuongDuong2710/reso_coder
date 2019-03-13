@@ -13,7 +13,8 @@ abstract class BuiltVehicle
   String get type;
   String get brand;
   double get price;
-  // fields go here
+  @nullable
+  bool get someValueNullable;
 
   BuiltVehicle._();
 

@@ -13,11 +13,14 @@ class _$BuiltVehicle extends BuiltVehicle {
   final String brand;
   @override
   final double price;
+  @override
+  final bool someValueNullable;
 
   factory _$BuiltVehicle([void updates(BuiltVehicleBuilder b)]) =>
       (new BuiltVehicleBuilder()..update(updates)).build();
 
-  _$BuiltVehicle._({this.type, this.brand, this.price}) : super._() {
+  _$BuiltVehicle._({this.type, this.brand, this.price, this.someValueNullable})
+      : super._() {
     if (type == null) {
       throw new BuiltValueNullFieldError('BuiltVehicle', 'type');
     }
@@ -42,12 +45,15 @@ class _$BuiltVehicle extends BuiltVehicle {
     return other is BuiltVehicle &&
         type == other.type &&
         brand == other.brand &&
-        price == other.price;
+        price == other.price &&
+        someValueNullable == other.someValueNullable;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc($jc(0, type.hashCode), brand.hashCode), price.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, type.hashCode), brand.hashCode), price.hashCode),
+        someValueNullable.hashCode));
   }
 
   @override
@@ -55,7 +61,8 @@ class _$BuiltVehicle extends BuiltVehicle {
     return (newBuiltValueToStringHelper('BuiltVehicle')
           ..add('type', type)
           ..add('brand', brand)
-          ..add('price', price))
+          ..add('price', price)
+          ..add('someValueNullable', someValueNullable))
         .toString();
   }
 }
@@ -76,6 +83,11 @@ class BuiltVehicleBuilder
   double get price => _$this._price;
   set price(double price) => _$this._price = price;
 
+  bool _someValueNullable;
+  bool get someValueNullable => _$this._someValueNullable;
+  set someValueNullable(bool someValueNullable) =>
+      _$this._someValueNullable = someValueNullable;
+
   BuiltVehicleBuilder();
 
   BuiltVehicleBuilder get _$this {
@@ -83,6 +95,7 @@ class BuiltVehicleBuilder
       _type = _$v.type;
       _brand = _$v.brand;
       _price = _$v.price;
+      _someValueNullable = _$v.someValueNullable;
       _$v = null;
     }
     return this;
@@ -103,8 +116,12 @@ class BuiltVehicleBuilder
 
   @override
   _$BuiltVehicle build() {
-    final _$result =
-        _$v ?? new _$BuiltVehicle._(type: type, brand: brand, price: price);
+    final _$result = _$v ??
+        new _$BuiltVehicle._(
+            type: type,
+            brand: brand,
+            price: price,
+            someValueNullable: someValueNullable);
     replace(_$result);
     return _$result;
   }
