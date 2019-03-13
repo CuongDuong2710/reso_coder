@@ -3,7 +3,7 @@ import 'package:dart_built_value/model/built_vehicle.dart';
 class CodeRunner {
   static void runCode() {
     var car = BuiltVehicle((b) => b..type = 'car'
-    ..brand
+    ..brand= 'Tesla'
     ..price= 100000);
 
     var copiedCar = car.rebuild((b) => b..brand = 'BMW'); // rebuild to create new instance, not change 'car'
