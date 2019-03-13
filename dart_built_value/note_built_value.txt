@@ -56,3 +56,31 @@ _ Snippet for built value in dart.json (File > Preferences -> User Snippets)
         "description": "Built Value Imports and File Header"
     },
 }
+
+_ Key Bindings:
+
+https://dartcode.org/docs/key-bindings/
+
+Editor Key Bindings
+Ctrl+T (macOS: Cmd+T) - Show Workspace Symbols
+Ctrl+Shift+O (macOS: Cmd+Shift+O) - Show Document Symbols
+Ctrl+Shift+P (macOS: Cmd+Shift+P) - Open Command Palette
+Ctrl+Space - Open Code Completion
+Ctrl+. (macOS: Cmd+.) - Open Quick Fixes
+F2 - Rename Symbol
+Shift+Alt+F (macOS: Cmd+Shift+F) - Format Document
+F12 - Go To Definition
+Shift+F12 - Find References
+Alt+Shift+O - Organize Directives
+F4 - Show Type Hierarchy
+Debug Key Bindings
+F5 - Start Debugging
+Ctrl+F5 - Start Without Debugging
+Shift+F5 - Stop Debugging
+Ctrl+Shift+F5 (macOS: Cmd+Shift+F5) - Restart Debugging (Hot Reload when debugging Flutter apps)
+Ctrl+F5 - Hot Restart (when debugging Flutter apps and in a debug session)
+F9 - Toggle Breakpoint
+F10 - Step Over
+F11 - Step In
+Shift+F11 - Step Out
+...
