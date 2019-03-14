@@ -15,6 +15,7 @@ abstract class BuiltVehicle
   double get price;
   @nullable
   bool get someValueNullable;
+  BuiltList<String> get passengerNames;
 
   BuiltVehicle._();
 

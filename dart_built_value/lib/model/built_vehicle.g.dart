@@ -15,11 +15,18 @@ class _$BuiltVehicle extends BuiltVehicle {
   final double price;
   @override
   final bool someValueNullable;
+  @override
+  final BuiltList<String> passengerNames;
 
   factory _$BuiltVehicle([void updates(BuiltVehicleBuilder b)]) =>
       (new BuiltVehicleBuilder()..update(updates)).build();
 
-  _$BuiltVehicle._({this.type, this.brand, this.price, this.someValueNullable})
+  _$BuiltVehicle._(
+      {this.type,
+      this.brand,
+      this.price,
+      this.someValueNullable,
+      this.passengerNames})
       : super._() {
     if (type == null) {
       throw new BuiltValueNullFieldError('BuiltVehicle', 'type');
@@ -29,6 +36,9 @@ class _$BuiltVehicle extends BuiltVehicle {
     }
     if (price == null) {
       throw new BuiltValueNullFieldError('BuiltVehicle', 'price');
+    }
+    if (passengerNames == null) {
+      throw new BuiltValueNullFieldError('BuiltVehicle', 'passengerNames');
     }
   }
 
@@ -46,14 +56,16 @@ class _$BuiltVehicle extends BuiltVehicle {
         type == other.type &&
         brand == other.brand &&
         price == other.price &&
-        someValueNullable == other.someValueNullable;
+        someValueNullable == other.someValueNullable &&
+        passengerNames == other.passengerNames;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, type.hashCode), brand.hashCode), price.hashCode),
-        someValueNullable.hashCode));
+        $jc($jc($jc($jc(0, type.hashCode), brand.hashCode), price.hashCode),
+            someValueNullable.hashCode),
+        passengerNames.hashCode));
   }
 
   @override
@@ -62,7 +74,8 @@ class _$BuiltVehicle extends BuiltVehicle {
           ..add('type', type)
           ..add('brand', brand)
           ..add('price', price)
-          ..add('someValueNullable', someValueNullable))
+          ..add('someValueNullable', someValueNullable)
+          ..add('passengerNames', passengerNames))
         .toString();
   }
 }
@@ -88,6 +101,12 @@ class BuiltVehicleBuilder
   set someValueNullable(bool someValueNullable) =>
       _$this._someValueNullable = someValueNullable;
 
+  ListBuilder<String> _passengerNames;
+  ListBuilder<String> get passengerNames =>
+      _$this._passengerNames ??= new ListBuilder<String>();
+  set passengerNames(ListBuilder<String> passengerNames) =>
+      _$this._passengerNames = passengerNames;
+
   BuiltVehicleBuilder();
 
   BuiltVehicleBuilder get _$this {
@@ -96,6 +115,7 @@ class BuiltVehicleBuilder
       _brand = _$v.brand;
       _price = _$v.price;
       _someValueNullable = _$v.someValueNullable;
+      _passengerNames = _$v.passengerNames?.toBuilder();
       _$v = null;
     }
     return this;
@@ -116,12 +136,26 @@ class BuiltVehicleBuilder
 
   @override
   _$BuiltVehicle build() {
-    final _$result = _$v ??
-        new _$BuiltVehicle._(
-            type: type,
-            brand: brand,
-            price: price,
-            someValueNullable: someValueNullable);
+    _$BuiltVehicle _$result;
+    try {
+      _$result = _$v ??
+          new _$BuiltVehicle._(
+              type: type,
+              brand: brand,
+              price: price,
+              someValueNullable: someValueNullable,
+              passengerNames: passengerNames.build());
+    } catch (_) {
+      String _$failedField;
+      try {
+        _$failedField = 'passengerNames';
+        passengerNames.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'BuiltVehicle', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

@@ -4,7 +4,8 @@ class CodeRunner {
   static void runCode() {
     var car = BuiltVehicle((b) => b..type = 'car'
     ..brand= 'Tesla'
-    ..price= 100000);
+    ..price= 100000
+    ..passengerNames.addAll(['Dane','Maria','David','Phil']));
 
     var copiedCar = car.rebuild((b) => b..brand = 'BMW'); // rebuild to create new instance, not change 'car'
 
