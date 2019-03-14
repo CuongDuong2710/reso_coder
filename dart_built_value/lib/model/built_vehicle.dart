@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
+import 'package:dart_built_value/model/serializers.dart';
 
 part 'built_vehicle.g.dart';
 
@@ -20,6 +21,18 @@ abstract class BuiltVehicle
   BuiltVehicle._();
 
   factory BuiltVehicle([updates(BuiltVehicleBuilder b)]) = _$BuiltVehicle;
+
+  String toJson() {
+    return json
+        .encode(serializers.serializeWith(BuiltVehicle.serializer, this));
+  }
+
+  static BuiltVehicle fromJson(String jsonString) {
+    return serializers.deserializeWith(
+        BuiltVehicle.serializer, json.decode(jsonString));
+  }
+
+  static Serializer<BuiltVehicle> get serializer => _$builtVehicleSerializer;
 }
 
 class VehicleType extends EnumClass {
@@ -32,4 +45,6 @@ class VehicleType extends EnumClass {
 
   static BuiltSet<VehicleType> get values => _$values;
   static VehicleType valueOf(String name) => _$valueOf(name);
+
+  static Serializer<VehicleType> get serializer => _$vehicleTypeSerializer;
 }
