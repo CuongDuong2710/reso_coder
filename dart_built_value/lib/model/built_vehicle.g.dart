@@ -6,9 +6,37 @@ part of built_vehicle;
 // BuiltValueGenerator
 // **************************************************************************
 
+const VehicleType _$car = const VehicleType._('car');
+const VehicleType _$motobike = const VehicleType._('motorbike');
+const VehicleType _$train = const VehicleType._('train');
+const VehicleType _$plane = const VehicleType._('plane');
+
+VehicleType _$valueOf(String name) {
+  switch (name) {
+    case 'car':
+      return _$car;
+    case 'motorbike':
+      return _$motobike;
+    case 'train':
+      return _$train;
+    case 'plane':
+      return _$plane;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<VehicleType> _$values =
+    new BuiltSet<VehicleType>(const <VehicleType>[
+  _$car,
+  _$motobike,
+  _$train,
+  _$plane,
+]);
+
 class _$BuiltVehicle extends BuiltVehicle {
   @override
-  final String type;
+  final VehicleType type;
   @override
   final String brand;
   @override
@@ -84,9 +112,9 @@ class BuiltVehicleBuilder
     implements Builder<BuiltVehicle, BuiltVehicleBuilder> {
   _$BuiltVehicle _$v;
 
-  String _type;
-  String get type => _$this._type;
-  set type(String type) => _$this._type = type;
+  VehicleType _type;
+  VehicleType get type => _$this._type;
+  set type(VehicleType type) => _$this._type = type;
 
   String _brand;
   String get brand => _$this._brand;

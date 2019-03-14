@@ -10,7 +10,7 @@ part 'built_vehicle.g.dart';
 
 abstract class BuiltVehicle
     implements Built<BuiltVehicle, BuiltVehicleBuilder> {
-  String get type;
+  VehicleType get type;
   String get brand;
   double get price;
   @nullable
@@ -20,4 +20,16 @@ abstract class BuiltVehicle
   BuiltVehicle._();
 
   factory BuiltVehicle([updates(BuiltVehicleBuilder b)]) = _$BuiltVehicle;
+}
+
+class VehicleType extends EnumClass {
+  static const VehicleType car = _$car;
+  static const VehicleType motorbike = _$motobike;
+  static const VehicleType train = _$train;
+  static const VehicleType plane = _$plane;
+
+  const VehicleType._(String name) : super(name);
+
+  static BuiltSet<VehicleType> get values => _$values;
+  static VehicleType valueOf(String name) => _$valueOf(name);
 }
