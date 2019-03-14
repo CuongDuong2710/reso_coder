@@ -83,4 +83,5 @@ F9 - Toggle Breakpoint
 F10 - Step Over
 F11 - Step In
 Shift+F11 - Step Out
+Ctrl+ , - open search settings
 ...
