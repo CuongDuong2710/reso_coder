@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Bloc library'),
     );
   }
 }
@@ -32,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Main(widget: widget, counterBloc: _counterBloc);
+    return BlocProvider(bloc: _counterBloc, child: CounterWidget(widget: widget),);
   }
 
   @override
@@ -42,15 +42,13 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class Main extends StatelessWidget {
-  const Main({
+class CounterWidget extends StatelessWidget {
+  const CounterWidget({
     Key key,
     @required this.widget,
-    @required CounterBloc counterBloc,
-  }) : _counterBloc = counterBloc, super(key: key);
+  }) : super(key: key);
 
   final MyHomePage widget;
-  final CounterBloc _counterBloc;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +57,7 @@ class Main extends StatelessWidget {
         title: Text(widget.title),
       ),
       body: BlocBuilder(
-        bloc: _counterBloc,
+        bloc: BlocProvider.of<CounterBloc>(context),
         builder: (BuildContext context, CounterState state) {
           return Center(
               child: Column(
@@ -76,13 +74,13 @@ class Main extends StatelessWidget {
       floatingActionButton:
           Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
         FloatingActionButton(
-          onPressed: () => _counterBloc.onIncrement(),
+          onPressed: () => BlocProvider.of<CounterBloc>(context).onIncrement(),
           tooltip: 'Increment',
           child: Icon(Icons.add),
         ),
         SizedBox(width: 10.0),
         FloatingActionButton(
-          onPressed: () => _counterBloc.onDecrement(),
+          onPressed: () =>  BlocProvider.of<CounterBloc>(context).onDecrement(),
           tooltip: 'Decrement',
           child: Icon(Icons.remove),
         )
