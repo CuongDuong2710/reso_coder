@@ -26,5 +26,5 @@ abstract class Thumbnail implements Built<Thumbnail, ThumbnailBuilder> {
         Thumbnail.serializer, json.decode(jsonString));
   }
 
-  static Serializer<Thumbnail> get serializer => _$ThumbnailSerializer;
+  static Serializer<Thumbnail> get serializer => _$thumbnailSerializer;
 }

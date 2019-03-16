@@ -5,14 +5,15 @@ import 'dart:convert';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
+import 'package:youtube_search/model/search/model.dart';
 
 part 'thumbnails.g.dart';
 
 abstract class Thumbnails implements Built<Thumbnails, ThumbnailsBuilder> {
   @BuiltValueField(wireName: 'default')
-  Thumbnail get defautl_;
+  Thumbnail get default_;
   Thumbnail get medium;
-  Thumbnail get height;
+  Thumbnail get high;
 
   Thumbnails._();
 
@@ -27,5 +28,5 @@ abstract class Thumbnails implements Built<Thumbnails, ThumbnailsBuilder> {
         Thumbnails.serializer, json.decode(jsonString));
   }
 
-  static Serializer<Thumbnails> get serializer => _$ThumbnailsSerializer;
+  static Serializer<Thumbnails> get serializer => _$thumbnailsSerializer;
 }

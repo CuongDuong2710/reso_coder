@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
+import 'package:youtube_search/model/search/thumbnails.dart';
 
 part 'search_snippet.g.dart';
 
@@ -31,5 +32,5 @@ abstract class SearchSnippet
         SearchSnippet.serializer, json.decode(jsonString));
   }
 
-  static Serializer<SearchSnippet> get serializer => _$SearchSnippetSerializer;
+  static Serializer<SearchSnippet> get serializer => _$searchSnippetSerializer;
 }
