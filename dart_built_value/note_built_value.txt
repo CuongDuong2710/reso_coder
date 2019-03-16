@@ -57,6 +57,8 @@ _ Snippet for built value in dart.json (File > Preferences -> User Snippets)
     },
 }
 
+_ Format on Save (File -> Settings -> Format on Save)
+
 _ Key Bindings:
 
 https://dartcode.org/docs/key-bindings/
