@@ -11,6 +11,8 @@ part 'thumbnails.g.dart';
 abstract class Thumbnails implements Built<Thumbnails, ThumbnailsBuilder> {
   @BuiltValueField(wireName: 'default')
   Thumbnail get defautl_;
+  Thumbnail get medium;
+  Thumbnail get height;
 
   Thumbnails._();
 
