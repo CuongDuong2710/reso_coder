@@ -18,4 +18,33 @@ abstract class SearchState implements Built<SearchState, SearchStateBuilder> {
   SearchState._();
 
   factory SearchState([updates(SearchStateBuilder b)]) = _$SearchState;
+
+  factory SearchState.initial() {
+    return SearchState((b) => b
+      ..isLoading = false
+      ..searchResults.replace(BuiltList<SearchItem>())
+      ..error = ''
+      ..hasReachedEndOfResults = false);
+  }
+  factory SearchState.loading() {
+    return SearchState((b) => b
+      ..isLoading = true
+      ..searchResults.replace(BuiltList<SearchItem>())
+      ..error = ''
+      ..hasReachedEndOfResults = false);
+  }
+  factory SearchState.failure(String error) {
+    return SearchState((b) => b
+      ..isLoading = false
+      ..searchResults.replace(BuiltList<SearchItem>())
+      ..error = error
+      ..hasReachedEndOfResults = false);
+  }
+  factory SearchState.success(BuiltList<SearchItem> resultList) {
+    return SearchState((b) => b
+      ..isLoading = false
+      ..searchResults.replace(resultList)
+      ..error = ''
+      ..hasReachedEndOfResults = false);
+  }
 }
