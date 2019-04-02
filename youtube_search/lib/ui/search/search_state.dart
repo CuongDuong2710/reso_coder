@@ -15,6 +15,10 @@ abstract class SearchState implements Built<SearchState, SearchStateBuilder> {
   String get error;
   bool get hasReachedEndOfResults;
 
+  bool get isInitial => !isLoading && searchResults.isEmpty && error == '';
+  bool get isSuccessful =>
+      !isLoading && searchResults.isNotEmpty && error == '';
+
   SearchState._();
 
   factory SearchState([updates(SearchStateBuilder b)]) = _$SearchState;
