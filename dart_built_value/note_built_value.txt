@@ -93,3 +93,7 @@ Ctrl+ , - open search settings
 _ Install 'Bloc' plugin
 
 _ Shortcut key: enter 'bloc'
+
+_ Keyboard shortcut window: Ctrl + K Ctrl + C
+
+_ Dart: Run all test -> Alt + Shift + [
