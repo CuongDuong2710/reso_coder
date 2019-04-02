@@ -19,20 +19,23 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   Stream<SearchState> mapEventToState(
       SearchState currentState, SearchEvent event) async* {
     if (event is SearchInitiated) {
-      if (event.query.isEmpty) {
-        yield SearchState.initial();
-      } else {
-        yield SearchState.loading();
+      mapSearchInitiated(event);
+    }
+  }
 
-        try {
-          final searchResult =
-              await _youtubeRepository.searchVideos(event.query);
-          yield SearchState.success(searchResult);
-        } on YoutubeSearchError catch (e) {
-          yield SearchState.failure(e.message);
-        } on NoSearchResultException catch (e) {
-          yield SearchState.failure(e.message);
-        }
+  Stream<SearchState> mapSearchInitiated(SearchInitiated event) async* {
+    if (event.query.isEmpty) {
+      yield SearchState.initial();
+    } else {
+      yield SearchState.loading();
+
+      try {
+        final searchResult = await _youtubeRepository.searchVideos(event.query);
+        yield SearchState.success(searchResult);
+      } on YoutubeSearchError catch (e) {
+        yield SearchState.failure(e.message);
+      } on NoSearchResultException catch (e) {
+        yield SearchState.failure(e.message);
       }
     }
   }
