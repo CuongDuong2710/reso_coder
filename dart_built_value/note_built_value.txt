@@ -87,3 +87,9 @@ F11 - Step In
 Shift+F11 - Step Out
 Ctrl+ , - open search settings
 ...
+
+
+=======================
+_ Install 'Bloc' plugin
+
+_ Shortcut key: enter 'bloc'
