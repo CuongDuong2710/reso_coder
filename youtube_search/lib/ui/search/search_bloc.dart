@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:youtube_search/ui/search/search.dart';
 import 'package:youtube_search/repository/youtube_repository.dart';
+import 'package:youtube_search/model/search/youtube_search_error.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   final YouTubeRepository _youtubeRepository;
@@ -17,7 +18,23 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   @override
   Stream<SearchState> mapEventToState(
       SearchState currentState, SearchEvent event) async* {
-    // TODO: implement mapEventToState
+    if (event is SearchInitiated) {
+      if (event.query.isEmpty) {
+        yield SearchState.initial();
+      } else {
+        yield SearchState.loading();
+
+        try {
+          final searchResult =
+              await _youtubeRepository.searchVideos(event.query);
+          yield SearchState.success(searchResult);
+        } on YoutubeSearchError catch (e) {
+          yield SearchState.failure(e.message);
+        } on NoSearchResultException catch (e) {
+          yield SearchState.failure(e.message);
+        }
+      }
+    }
   }
 }
 
