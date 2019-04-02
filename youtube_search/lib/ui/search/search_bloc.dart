@@ -19,7 +19,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   Stream<SearchState> mapEventToState(
       SearchState currentState, SearchEvent event) async* {
     if (event is SearchInitiated) {
-      mapSearchInitiated(event);
+      yield* mapSearchInitiated(event);
     }
   }
 
