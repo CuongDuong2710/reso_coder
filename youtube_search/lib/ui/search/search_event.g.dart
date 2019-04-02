@@ -7,10 +7,17 @@ part of search_event;
 // **************************************************************************
 
 class _$SearchInitiated extends SearchInitiated {
+  @override
+  final String query;
+
   factory _$SearchInitiated([void updates(SearchInitiatedBuilder b)]) =>
       (new SearchInitiatedBuilder()..update(updates)).build();
 
-  _$SearchInitiated._() : super._();
+  _$SearchInitiated._({this.query}) : super._() {
+    if (query == null) {
+      throw new BuiltValueNullFieldError('SearchInitiated', 'query');
+    }
+  }
 
   @override
   SearchInitiated rebuild(void updates(SearchInitiatedBuilder b)) =>
@@ -23,17 +30,18 @@ class _$SearchInitiated extends SearchInitiated {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is SearchInitiated;
+    return other is SearchInitiated && query == other.query;
   }
 
   @override
   int get hashCode {
-    return 283563868;
+    return $jf($jc(0, query.hashCode));
   }
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('SearchInitiated').toString();
+    return (newBuiltValueToStringHelper('SearchInitiated')..add('query', query))
+        .toString();
   }
 }
 
@@ -41,7 +49,19 @@ class SearchInitiatedBuilder
     implements Builder<SearchInitiated, SearchInitiatedBuilder> {
   _$SearchInitiated _$v;
 
+  String _query;
+  String get query => _$this._query;
+  set query(String query) => _$this._query = query;
+
   SearchInitiatedBuilder();
+
+  SearchInitiatedBuilder get _$this {
+    if (_$v != null) {
+      _query = _$v.query;
+      _$v = null;
+    }
+    return this;
+  }
 
   @override
   void replace(SearchInitiated other) {
@@ -58,7 +78,7 @@ class SearchInitiatedBuilder
 
   @override
   _$SearchInitiated build() {
-    final _$result = _$v ?? new _$SearchInitiated._();
+    final _$result = _$v ?? new _$SearchInitiated._(query: query);
     replace(_$result);
     return _$result;
   }

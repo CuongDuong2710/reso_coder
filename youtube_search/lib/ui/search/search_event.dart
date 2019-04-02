@@ -8,7 +8,7 @@ abstract class SearchEvent {}
 
 abstract class SearchInitiated extends SearchEvent
     implements Built<SearchInitiated, SearchInitiatedBuilder> {
-  // fields go here
+  String get query;
 
   SearchInitiated._();
 
