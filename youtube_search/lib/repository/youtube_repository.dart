@@ -16,7 +16,7 @@ class YouTubeRepository {
     // cache last query & next page token
     _cacheValues(nextPageToken: searchResult.nextPageToken, query: query);
 
-    if (searchResult.items.isEmpty) throw NoSearchResultException();
+    if (searchResult.items.isEmpty) throw NoSearchResultsException();
 
     return searchResult.items;
   }
@@ -47,7 +47,7 @@ class YouTubeRepository {
   }
 }
 
-class NoSearchResultException implements Exception {
+class NoSearchResultsException implements Exception {
   final message = 'No results';
 }
 

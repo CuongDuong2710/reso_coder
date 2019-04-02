@@ -64,7 +64,7 @@ void main() {
 
           expect(
             () => repository.searchVideos('fsadfkjlsadlfasdfaljkal'),
-            throwsA(TypeMatcher<NoSearchResultException>()),
+            throwsA(TypeMatcher<NoSearchResultsException>()),
           );
         },
       );
