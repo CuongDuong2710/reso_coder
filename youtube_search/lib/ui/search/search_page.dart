@@ -101,9 +101,15 @@ class _SearchPageState extends State<SearchPage> {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: <Widget>[Image.network(snippet.thumbnails.high.url)],
-        ),
+        child: Column(children: <Widget>[
+          AspectRatio(
+            aspectRatio: 16 / 9,
+            child: Image.network(
+              snippet.thumbnails.high.url,
+              fit: BoxFit.cover,
+            ),
+          )
+        ]),
       ),
     );
   }
