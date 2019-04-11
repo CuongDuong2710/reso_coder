@@ -43,6 +43,16 @@ class _SearchPageState extends State<SearchPage> {
                 icon: Icons.ondemand_video,
               );
             }
+            if (state.isLoading) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            if (state.isSuccessful) {
+            } else {
+              return CenteredMessages(
+                  message: state.error, icon: Icons.error_outline);
+            }
           }),
     );
   }
