@@ -1,5 +1,11 @@
 Ctrl + '.' -> quick fix
 
+=====================================
+Functions
+
+buildResultList() is public
+
+__buildResultList() is private
 
 
 
