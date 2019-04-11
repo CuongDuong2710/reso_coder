@@ -108,7 +108,16 @@ class _SearchPageState extends State<SearchPage> {
               snippet.thumbnails.high.url,
               fit: BoxFit.cover,
             ),
-          )
+          ),
+          SizedBox(height: 5),
+          Text(
+            snippet.title,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          ),
+          SizedBox(height: 5),
+          Text(snippet.description)
         ]),
       ),
     );
