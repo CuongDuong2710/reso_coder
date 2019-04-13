@@ -16,7 +16,7 @@ class YouTubeDataSource {
           '&maxResults=$MAX_SEARCH_RESULTS&type=video&key=$API_KEY';
 
   final String _videoBaseUrl =
-      'https://www.googleapis.com/youtube/v3/video?part=snippetS&key=$API_KEY';
+      'https://www.googleapis.com/youtube/v3/videos?part=snippet&key=$API_KEY';
 
   YouTubeDataSource(this.client);
 
