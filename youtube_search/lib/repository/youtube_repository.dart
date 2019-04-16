@@ -1,4 +1,5 @@
 import 'package:built_collection/built_collection.dart';
+import 'package:youtube_search/model/detail/model_detail.dart';
 import 'package:youtube_search/model/search/model.dart';
 import 'package:youtube_search/network/youtube_data_source.dart';
 
@@ -45,6 +46,12 @@ class YouTubeRepository {
 
     return nextPageSearchResult.items;
   }
+
+  Future<VideoItem> fetchVideoInfo({String id}) async {
+    final videoResponse = await _youTubeDataSource.fetchVideoInfo(id: id);
+    if (videoResponse.items.isEmpty) throw NoSuchVideoException();
+    return videoResponse.items[0];
+  }
 }
 
 class NoSearchResultsException implements Exception {
@@ -56,3 +63,7 @@ class SearchNotInitiatedException implements Exception {
 }
 
 class NoNextPageTokenException implements Exception {}
+
+class NoSuchVideoException implements Exception {
+  final message = 'No such video';
+}
