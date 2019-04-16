@@ -15,6 +15,9 @@ abstract class DetailState implements Built<DetailState, DetailStateBuilder> {
   VideoItem get videoItem;
   String get error;
 
+  bool get isInitial => !isLoading && videoItem == null && error == '';
+  bool get isSuccessful => !isLoading && videoItem != null && error == '';
+
   DetailState._();
 
   factory DetailState([updates(DetailStateBuilder b)]) = _$DetailState;
