@@ -28,6 +28,8 @@ class DetailBloc extends Bloc<DetailEvent, DetailState> {
         yield DetailState.success(videoItem);
       } on YoutubeVideoError catch (e) {
         yield DetailState.failure(e.message);
+      } on NoSuchVideoException catch (e) {
+        yield DetailState.failure(e.message);
       }
     }
   }
