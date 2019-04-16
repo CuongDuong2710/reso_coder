@@ -7,10 +7,17 @@ part of detail_event;
 // **************************************************************************
 
 class _$ShowDetail extends ShowDetail {
+  @override
+  final String id;
+
   factory _$ShowDetail([void updates(ShowDetailBuilder b)]) =>
       (new ShowDetailBuilder()..update(updates)).build();
 
-  _$ShowDetail._() : super._();
+  _$ShowDetail._({this.id}) : super._() {
+    if (id == null) {
+      throw new BuiltValueNullFieldError('ShowDetail', 'id');
+    }
+  }
 
   @override
   ShowDetail rebuild(void updates(ShowDetailBuilder b)) =>
@@ -22,24 +29,37 @@ class _$ShowDetail extends ShowDetail {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is ShowDetail;
+    return other is ShowDetail && id == other.id;
   }
 
   @override
   int get hashCode {
-    return 845526220;
+    return $jf($jc(0, id.hashCode));
   }
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('ShowDetail').toString();
+    return (newBuiltValueToStringHelper('ShowDetail')..add('id', id))
+        .toString();
   }
 }
 
 class ShowDetailBuilder implements Builder<ShowDetail, ShowDetailBuilder> {
   _$ShowDetail _$v;
 
+  String _id;
+  String get id => _$this._id;
+  set id(String id) => _$this._id = id;
+
   ShowDetailBuilder();
+
+  ShowDetailBuilder get _$this {
+    if (_$v != null) {
+      _id = _$v.id;
+      _$v = null;
+    }
+    return this;
+  }
 
   @override
   void replace(ShowDetail other) {
@@ -56,7 +76,7 @@ class ShowDetailBuilder implements Builder<ShowDetail, ShowDetailBuilder> {
 
   @override
   _$ShowDetail build() {
-    final _$result = _$v ?? new _$ShowDetail._();
+    final _$result = _$v ?? new _$ShowDetail._(id: id);
     replace(_$result);
     return _$result;
   }

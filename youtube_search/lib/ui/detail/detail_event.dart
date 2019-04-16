@@ -6,8 +6,9 @@ part 'detail_event.g.dart';
 
 abstract class DetailEvent {}
 
-abstract class ShowDetail implements Built<ShowDetail, ShowDetailBuilder> {
-  // fields go here
+abstract class ShowDetail extends DetailEvent
+    implements Built<ShowDetail, ShowDetailBuilder> {
+  String get id;
 
   ShowDetail._();
 
