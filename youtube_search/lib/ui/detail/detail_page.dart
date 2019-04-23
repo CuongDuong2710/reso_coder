@@ -3,6 +3,7 @@ import 'package:kiwi/kiwi.dart' as kiwi;
 import 'package:youtube_search/ui/detail/detail.dart';
 import 'package:youtube_search/ui/detail/detail_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:youtube_search/ui/search/widget/centered_messages.dart';
 
 class DetailPage extends StatefulWidget {
   final String videoId;
@@ -57,5 +58,48 @@ class _DetailPageState extends State<DetailPage> {
     );
   }
 
-  FlexibleSpaceBar _buildSilverAppBarContent(DetailState state) {}
+  FlexibleSpaceBar _buildSilverAppBarContent(DetailState state) {
+    if (state.isLoading) {
+      return FlexibleSpaceBar();
+    }
+
+    if (state.isSuccessful) {
+      return FlexibleSpaceBar(
+        title: Text(
+          state.videoItem.snippet.title,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+        // Stack orders children behind each other
+        background: Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            Image.network(state.videoItem.snippet.thumbnails.high.url,
+                fit: BoxFit.cover),
+            Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      stops: [
+                    0.15,
+                    0.15
+                  ],
+                      colors: [
+                    Colors.black.withOpacity(0.7),
+                    Colors.transparent
+                  ])),
+            ),
+          ],
+        ),
+      );
+    } else {
+      return FlexibleSpaceBar(
+        background: CenteredMessages(
+          message: state.error,
+          icon: Icons.error_outline,
+        ),
+      );
+    }
+  }
 }
