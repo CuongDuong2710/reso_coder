@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kiwi/kiwi.dart' as kiwi;
+import 'package:youtube_search/model/detail/video_snippet.dart';
 import 'package:youtube_search/ui/detail/detail.dart';
 import 'package:youtube_search/ui/detail/detail_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,7 +54,8 @@ class _DetailPageState extends State<DetailPage> {
           pinned: true,
           flexibleSpace: _buildSilverAppBarContent(state),
           // app bar stills be seen (red background) when we scroll down
-        )
+        ),
+        _buildPageBody(state)
       ],
     );
   }
@@ -83,7 +85,7 @@ class _DetailPageState extends State<DetailPage> {
                       end: Alignment.topCenter,
                       stops: [
                     0.15,
-                    0.15
+                    0.5
                   ],
                       colors: [
                     Colors.black.withOpacity(0.7),
@@ -101,5 +103,68 @@ class _DetailPageState extends State<DetailPage> {
         ),
       );
     }
+  }
+
+  Widget _buildPageBody(DetailState state) {
+    if (state.isLoading) {
+      return SliverFillRemaining(
+        child: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+
+    if (state.isSuccessful) {
+      return _buildVideoDetailList(state.videoItem.snippet);
+    } else {
+      return SliverFillRemaining(
+        child: CenteredMessages(
+          message: state.error,
+          icon: Icons.error_outline,
+        ),
+      );
+    }
+  }
+
+  Widget _buildVideoDetailList(VideoSnippet videoSnippet) {
+    return SliverPadding(
+      padding: const EdgeInsets.all(8.0),
+      sliver: SliverList(
+        // takes in children list directly without a builder
+        delegate: SliverChildListDelegate(<Widget>[
+          SizedBox(height: 5),
+          Text(
+            videoSnippet.title,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+          ),
+          SizedBox(height: 5),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Container(
+              width: MediaQuery.of(context).size.width * 2,
+              child: Wrap(
+                spacing: 10,
+                children: _getTagsAsChipWidgets(videoSnippet),
+              ),
+            ),
+          ),
+          SizedBox(height: 5),
+          Text(
+            'Description',
+            style: Theme.of(context).textTheme.title,
+          ),
+          SizedBox(height: 5),
+          Text(videoSnippet.description)
+        ]),
+      ),
+    );
+  }
+
+  List<Widget> _getTagsAsChipWidgets(VideoSnippet videoSnippet) {
+    return videoSnippet.tags.map((tag) {
+      return Chip(
+        label: Text(tag),
+      );
+    }).toList();
   }
 }
