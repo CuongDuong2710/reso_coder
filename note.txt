@@ -1,5 +1,13 @@
 Ctrl + '.' -> quick fix
 
+_ Install webdev
+flutter pub global activate webdev
+flutter packages pub global activate stagehand
+add Path: E:\Flutter\flutter\.pub-cache\bin
+flutter packages pub global run webdev serve
+
+https://www.didierboelens.com/2019/05/flutter-for-the-web/
+
 =====================================
 Functions
 
